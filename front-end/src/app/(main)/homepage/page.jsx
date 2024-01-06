@@ -8,10 +8,10 @@ import SearchBar from '../../../components/SearchBar';
 import UserCard from '../../../components/UserCard';
 
 export default async function Page() {
-  // const session = await getServerSession(authOptions);    
-  // if (!session) {
-  //     redirect('/login');
-  // }
+  const session = await getServerSession(authOptions);    
+  if (!session) {
+      redirect('/login');
+  }
   console.log(session.sessionId)
   // Array simulating data from the database
   const cardsData = [
@@ -30,7 +30,7 @@ export default async function Page() {
           {/* <UserMenu/> */}
         </div>
 
-        <div className="col-span4">
+        {/* <div className="col-span4">
           <div className="flex flex-row">
             <UserCard title="Upload Dataset" description="" isUploadCard={true} sessionId={session.sessionId} userId={session.userId}/>
 
@@ -38,7 +38,7 @@ export default async function Page() {
               <UserCard key={index} {...card} />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
