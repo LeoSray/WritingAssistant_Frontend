@@ -21,6 +21,7 @@ export default function page() {
           return;
         }
     
+        // Hello
         try {
           const resUserExists = await fetch("api/userExists", {
             method: "POST",
