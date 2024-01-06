@@ -22,7 +22,7 @@ export default function Page() {
   }, [session, router]);
 
   if (!session) {
-      return null; // or a loading indicator
+    router.push('/login');; // or a loading indicator
   }
   // if (!session) {
   //     return null; // or a loading indicator
