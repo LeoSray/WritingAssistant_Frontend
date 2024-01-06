@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'JourneyWriter'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6CE7575380F549A79655D1BC07B59A4F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1EB80C90A6C0408982A60CA338406BAF }}
           package: .
