@@ -31,7 +31,7 @@ const SideNav = () => {
     const handleSignOut = async () => {
         console.log("SignOut");
         await signOut({ redirect: true, callbackUrl: '/login' });
-        await fetch("http://127.0.0.1:8080/signout");
+        await fetch("https://journeyai.azurewebsites.net/signout");
     }
 
     return (

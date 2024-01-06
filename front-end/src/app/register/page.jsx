@@ -42,7 +42,7 @@ export default function page() {
           // const _id = cryptoId.replace(/-/g, '');
           const id = uuidv4().replace(/-/g, '');
 
-          const res = await fetch("http://127.0.0.1:5000/signup", {
+          const res = await fetch("https://journeyai.azurewebsites.net/signup", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

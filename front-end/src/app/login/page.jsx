@@ -31,24 +31,6 @@ export default function page() {
             setLoading(false);
             router.push('/homepage');
         }
-
-        // fetching login API to authenticate with backend Flask aswell.
-        // await fetch("http://127.0.0.1:5000/login", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({email, password}),
-        // }).then(async res => {
-        //     if (res?.ok) {
-        //         const data = await res.json();
-        //         console.log("response is ok", data)
-        //     }
-        // }).catch(error => {
-        //     console.error("Error in the flask login" + error);
-        // });
-
-        
     };
     return (
         <section className='relative flex w-screen h-screen mx-auto items-center justify-center bg-bgLight'>

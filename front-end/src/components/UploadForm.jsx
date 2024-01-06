@@ -35,7 +35,7 @@ const UploadForm = ({isVisible, toggleVisibility, sessionId, userId }) => {
         formData.append('user_id', userId);
         formData.append('title', title);
         try {
-            const response = await fetch('http://127.0.0.1:8080/upload_dataset', {
+            const response = await fetch('https://journeyai.azurewebsites.net/upload_dataset', {
                 method: 'POST',
                 body: formData,
             });

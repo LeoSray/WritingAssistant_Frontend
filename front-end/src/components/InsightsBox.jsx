@@ -56,7 +56,7 @@ const InsightsBox = ({sessionId}) => {
         setIsLoading(true); // Set loading to true before API call
         const getInsightsData = async (prev_insights, insight_count) => {
             try {
-                const response = await fetch('http://127.0.0.1:8080/get_insights', {
+                const response = await fetch('https://journeyai.azurewebsites.net/get_insights', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
