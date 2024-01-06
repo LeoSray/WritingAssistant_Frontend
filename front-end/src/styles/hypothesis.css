@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right:50px;
+}
+
+.hypothesisScroll {
+    max-height: 170px;
+    overflow: auto;
+}
+
+@media  (min-height: 650px) {
+    .hypothesisScroll {
+        max-height: 150px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+}
+
+@media  (min-height: 750px) {
+    .hypothesisScroll {
+        max-height: 220px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+}
+
+@media  (min-height: 850px) {
+    .hypothesisScroll {
+        max-height: 250px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+}
+
+@media  (min-height: 1000px) {
+    .hypothesisScroll {
+        max-height: 400px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+}
+
+/* Custom scrollbar styles */
+.hypothesisScroll::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+
+.hypothesisScroll::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* color of the tracking area */
+}
+
+.hypothesisScroll::-webkit-scrollbar-thumb {
+    background-color: #888; /* color of the scroll thumb */
+    border-radius: 6px; /* roundness of the scroll thumb */
+    border: 3px solid #f1f1f1; /* creates padding around scroll thumb */
+}
+
+.hypothesisScroll::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* color when hovering over the scroll thumb */
+}
+
+/* Custom scrollbar styles */
+.dark .hypothesisScroll::-webkit-scrollbar {
+    width: 11px; /* width of the entire scrollbar */
+    background-color: rgb(23, 23, 23);
+}
+
+.dark .hypothesisScroll::-webkit-scrollbar-track {
+    background-color: rgb(23, 23, 23);
+}
+
+.dark .hypothesisScroll::-webkit-scrollbar-thumb {
+    background-color:rgb(138, 141, 225);
+    border-radius: 5px;
+    border: 2px solid #000000; 
+}
+
+.dark .hypothesisScroll::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* color when hovering over the scroll thumb */
+}

@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* sm	640px	@media (min-width: 640px) { ... }
+md	768px	@media (min-width: 768px) { ... }
+lg	1024px	@media (min-width: 1024px) { ... }
+xl	1280px	@media (min-width: 1280px) { ... }
+2xl	1536px	@media (min-width: 1536px) { ... } */
+body html {
+  min-height: 600px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: rgb(0, 0, 0)
+}
+
+.customBg {
+    background: url('../../public/img.png');
+    background-repeat: no-repeat;
+    background-blend-mode: none;
+    background-position: center;
+    background-size: cover;
+    clip-path: none;
+}
+
+/* clip image for xl screens and above */
+@media (min-width: 1280px) {
+.customBg {
+    /* 0,0 is top left corner, goes to top-right corner 100%, 0 */
+    /* Botton-right corner 100 100, then to bottom left 0, 100 */
+    clip-path: polygon(0 0, 65% 0, 100% 100%, 0% 100%)
+    }
+}
+
+.customBorder {
+    /* box-shadow: 10px 10px 4px 0px #3E47AC inset, -10px -10px 4px 0px #4947A7 inset; */
+    box-shadow: 10px 10px 4px 0px #3E47AC;
+    /* box-shadow: 10px 10px 4px 0px #412b93; */
+}
+  
+.customDropShadow {
+    filter: drop-shadow(0px 10px 10px #5C55BC) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    /* filter: drop-shadow(0px 1px 1px #5C55BC); */
+}
+
+/* 
+@media (min-height: 500px) {
+  .ql-editor {
+    height: 350px;
+  }
+}
+
+@media (min-height: 700px) {
+  .ql-editor {
+    height: 600px;
+  }
+}
+
+@media (min-height: 850px) {
+  .ql-editor {
+    height: 800px;
+  }
+} */
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content:center;
+  font-weight: 600;
+}
+
+.editor-container {
+  background: #FDFDFE;
+  font-family: Arial, sans-serif;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Style the scrollbar thumb (the part that you drag) */
+.editor-container ::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 10px;
+  border: 3px solid #f4f4f4;
+}
+  
+/* Style the scrollbar itself (width, color etc.) */
+.editor-container ::-webkit-scrollbar {
+  width: 11px;
+  background-color: #FDFDFE;
+}
+
+/* Optionally, style the scrollbar for hovering */
+.editor-container ::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+.documentTitle button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.documentTitle button:hover {
+  background-color: rgb(138, 141, 225, 0.2);
+}
+
+.documentTitle input {
+  outline: none;
+  overflow-x: auto; 
+  white-space: nowrap;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 700;
+  
+  /* Hide scrollbar for Webkit browsers */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  -ms-overflow-style: none;  /* for Internet Explorer, Edge */
+  scrollbar-width: none;  /* for Firefox */
+}
+
+.toolbar {
+  display: flex;          /* Use Flexbox */
+  justify-content: center; /* Center horizontally */
+  border:none;
+  border-radius: 1px;
+  opacity: 0.6;
+  background: #FDFDFE;
+  position: sticky;
+  color:#000000;
+  /* box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.1); /* Horizontal offset, vertical offset, blur radius, color */
+}
+  
+.toolbar button {
+  padding:10px;
+}
+
+.toolbar button:hover {
+  background-color: #e2e8f0; /* This is a light gray color; change as needed */
+  border-radius: 5px;
+  cursor: pointer;
+  color: black !important; /* Your desired text color for hover, with !important to ensure it takes precedence */
+  opacity: 0.8;
+  text-decoration: none !important;
+
+}
+
+.delayAnimation {
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 1s; /* Delay the start of the animation by 2 seconds */
+  visibility: hidden; /* Start with toolbar hidden */
+  opacity: 0; /* Start with toolbar fully transparent */
+}
+
+@keyframes fadeIn {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/* spinning loader css  */
+.loader {
+  color: black;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.3s infinite linear;
+  transform: translateZ(0);
+}
+
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em, 
+    2em -2em 0 0em, 3em 0 0 -1em, 
+    2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 
+    3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 
+    2em -2em 0 0, 3em 0 0 0.2em, 
+    2em 2em 0 0, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, 
+     -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, 
+     -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, 
+     -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 
+    3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 
+    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+
+/* Dark mode styles for your custom class */
+@layer utilities {
+  .dark .editor-container {
+    background-color: #030712;
+    /* background-color: #171717; */
+  }
+
+  /* target placeholder attribute */
+  .dark .tiptap p.is-editor-empty:first-child::before{
+    font-weight: 600;
+    color: #adb5bd;
+    font-family: Arial, sans-serif;
+
+  }
+
+  /* Style the scrollbar thumb (the part that you drag) */
+  .dark .editor-container ::-webkit-scrollbar-thumb {
+    /* background-color: #7d76da; */
+    background-color:rgb(138, 141, 225);
+    border-radius: 5px;
+    border: 2px solid #000000; /* Same as the track color to create padding around thumb */
+  }
+    
+  /* Style the scrollbar itself (width, color etc.) */
+  .dark .editor-container ::-webkit-scrollbar {
+    width: 11px;
+    background-color: #030712;
+  }
+
+  /* Optionally, style the scrollbar for hovering */
+  .dark .editor-container ::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a0;
+  }
+
+  .dark .toolbar {
+    background-color: #030712;
+    fill:white;
+    /* transition: color 500ms ease-in; */
+  }
+
+  .dark .toolbar button {
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .dark .toolbar button:hover {
+    background-color: #545659; /* This is a light gray color; change as needed */
+    border-radius: 5px;
+  }
+}

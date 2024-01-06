@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.insightScroll {
+    max-height: 150px;
+    overflow: auto;
+}
+
+.insightScrollFull {
+    min-height: 450px;
+    max-height: 100%;
+    overflow: visible;
+}
+
+@media  (min-height: 650px) {
+    .insightScroll {
+        max-height: 200px;
+    }
+}
+
+@media  (min-height: 750px) {
+    .insightScroll {
+        max-height: 250px;
+    }
+}
+
+@media  (min-height: 850px) {
+    .insightScroll { 
+        max-height: 300px;
+        overflow: auto;
+    }
+    .insightScrollFull {
+        min-height: 400px;
+        max-height: 500px;
+        overflow: auto;
+    }
+    .insightScrollFull::-webkit-scrollbar {
+        width: 12px; /* width of the entire scrollbar */
+    }
+    .insightScrollFull::-webkit-scrollbar-track {
+        background: #f1f1f1; /* color of the tracking area */
+    }
+    .insightScrollFull::-webkit-scrollbar-thumb {
+        background-color: #888; /* color of the scroll thumb */
+        border-radius: 6px; /* roundness of the scroll thumb */
+        border: 3px solid #f1f1f1; /* creates padding around scroll thumb */
+    }
+    .insightScrollFull::-webkit-scrollbar-thumb:hover {
+        background: #555; /* color when hovering over the scroll thumb */
+    }
+}
+
+@media  (min-height: 900px) {
+    .insightScroll {
+        max-height: 400px;
+    }
+}
+
+@media  (min-height: 1000px) {
+    .insightScroll {
+        max-height: 450px;
+    }
+}
+
+/* Custom scrollbar styles */
+.insightScroll::-webkit-scrollbar {
+width: 12px; /* width of the entire scrollbar */
+}
+
+.insightScroll::-webkit-scrollbar-track {
+background: #f1f1f1; /* color of the tracking area */
+}
+
+.insightScroll::-webkit-scrollbar-thumb {
+background-color: #888; /* color of the scroll thumb */
+border-radius: 6px; /* roundness of the scroll thumb */
+border: 3px solid #f1f1f1; /* creates padding around scroll thumb */
+}
+
+.insightScroll::-webkit-scrollbar-thumb:hover {
+background: #555; /* color when hovering over the scroll thumb */
+}
+
+/* Custom scrollbar styles */
+.dark .insightScroll::-webkit-scrollbar {
+    width: 11px; /* width of the entire scrollbar */
+    background-color: rgb(23, 23, 23);
+    background:none;
+}
+
+.dark .insightScroll::-webkit-scrollbar-track {
+    background-color: rgb(23, 23, 23);
+}
+
+.dark .insightScroll::-webkit-scrollbar-thumb {
+    background-color:rgb(138, 141, 225);
+    border-radius: 5px;
+    border: 2px solid #000000; 
+}
+
+.dark .insightScroll::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* color when hovering over the scroll thumb */
+}
