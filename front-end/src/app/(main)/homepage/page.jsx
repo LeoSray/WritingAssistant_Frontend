@@ -8,10 +8,10 @@ import SearchBar from '../../../components/SearchBar';
 import UserCard from '../../../components/UserCard';
 
 export default async function Page() {
-  const session = await getServerSession(authOptions);    
-  if (!session) {
-      redirect('/login');
-  }
+  // const session = await getServerSession(authOptions);    
+  // if (!session) {
+  //     redirect('/login');
+  // }
   console.log(session.sessionId)
   // Array simulating data from the database
   const cardsData = [
@@ -43,12 +43,3 @@ export default async function Page() {
     </section>
   );
 }
-
-
-        {/* <div className="flex flex-row justify-between items-center w-full">
-          <input
-            type="text"
-            placeholder="Search for a dataset..."
-            className="bg-gray-200 text-gray-800 p-2 rounded-md"
-          />
-        </div> */}
