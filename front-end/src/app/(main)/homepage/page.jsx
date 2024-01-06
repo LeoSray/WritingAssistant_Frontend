@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 // import { authOptions } from "../../api/auth/[...nextauth]/route";
 // import { getServerSession } from "next-auth";
@@ -6,8 +7,26 @@ import UserMenu from '../../../components/UserMenu';
 import HomeSideNav from '../../../components/HomeSideNav';
 import SearchBar from '../../../components/SearchBar';
 import UserCard from '../../../components/UserCard';
+import { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
-export default async function Page() {
+export default function Page() {
+  const { data: session, status  } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+      if (status === "unauthenticated") {
+          router.push('/login');
+      }
+  }, [session, router]);
+
+  if (!session) {
+      return null; // or a loading indicator
+  }
+  // if (!session) {
+  //     return null; // or a loading indicator
+  // }
   // const session = await getServerSession(authOptions);    
   // if (!session) {
   //     redirect('/login');
@@ -27,7 +46,6 @@ export default async function Page() {
       <div className="col-span-4 p-12">
         <div className="flex flex-row justify-start items-center pb-5">
           <SearchBar/>
-          {/* <UserMenu/> */}
         </div>
 
         {/* <div className="col-span4">
