@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../../api/auth/[...nextauth]/route';
 import { AuthProvider } from "../../Providers";
 import { UploadDataProvider } from "../../../context/UploadDataContext"
+import { redirect } from "next/navigation";
 import '../../globals.css';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,12 +15,15 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  // const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect('/login');
+  }
   return (
     <html suppressHydrationWarning>
       <body>
         <ThemeProvider  attribute="class" defaultTheme="system" enableSystem>
-          <AuthProvider>
+          <AuthProvider session={session}>
             {children}
           </AuthProvider>
         </ThemeProvider>
