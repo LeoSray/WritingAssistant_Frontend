@@ -16,9 +16,9 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await getServerSession(authOptions);
-  // if (!session) {
-  //   redirect('/login');
-  // }
+  if (!session) {
+    redirect('/login');
+  }
   return (
     <html suppressHydrationWarning>
       <body>

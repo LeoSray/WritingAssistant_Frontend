@@ -33,7 +33,6 @@ export default async function Page() {
   //   );  
   // }
 
-  console.log('Session:', session); // Check if session data is received
   // Array simulating data from the database
   const cardsData = [
     { title: "The Consumption of Cars during the years", description: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order. Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order. Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.", isUploadCard: false },
