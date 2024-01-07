@@ -1,35 +1,42 @@
-'use client';
+// 'use client';
 import React from 'react';
-// import { authOptions } from "../../api/auth/[...nextauth]/route";
-// import { getServerSession } from "next-auth";
-// import { redirect } from "next/navigation";import React, { useEffect } from 'react';
-import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { authOptions } from "../../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+// import { useEffect } from 'react';
+// import { useSession } from 'next-auth/react';
+// import { useRouter } from 'next/navigation';
 import UserMenu from '../../../components/UserMenu';
 import HomeSideNav from '../../../components/HomeSideNav';
 import SearchBar from '../../../components/SearchBar';
 import UserCard from '../../../components/UserCard';
 import { BeatLoader } from 'react-spinners';
 
-export default function Page() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+export default async function Page() {
+  const session = await getServerSession(authOptions);
 
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    }
-  }, [status, router]);
-
-  if (status === 'loading' || status === 'unauthenticated') {
-    return (
-      <div className='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
-        <span className='sr-only'>Loading...</span>
-        <BeatLoader color="#000000" />
-      </div>
-    );  
+  if (!session) {
+    redirect('/login');
   }
+
+  console.log(session);
+  // const { data: session, status } = useSession();
+  // const router = useRouter();
+
+  // useEffect(() => {
+  //   if (status === 'unauthenticated') {
+  //     router.push('/login');
+  //   }
+  // }, [status, router]);
+
+  // if (status === 'loading' || status === 'unauthenticated') {
+  //   return (
+  //     <div className='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
+  //       <span className='sr-only'>Loading...</span>
+  //       <BeatLoader color="#000000" />
+  //     </div>
+  //   );  
+  // }
 
   console.log('Session:', session); // Check if session data is received
   // Array simulating data from the database
