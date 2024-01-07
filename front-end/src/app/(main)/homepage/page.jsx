@@ -1,8 +1,8 @@
 // 'use client';
 import React from 'react';
-import { authOptions } from "../../api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+// import { authOptions } from "../../api/auth/[...nextauth]/route";
+// import { getServerSession } from "next-auth";
+// import { redirect } from "next/navigation";
 // import { useEffect } from 'react';
 // import { useSession } from 'next-auth/react';
 // import { useRouter } from 'next/navigation';
@@ -13,8 +13,8 @@ import UserCard from '../../../components/UserCard';
 import { BeatLoader } from 'react-spinners';
 
 export default async function Page() {
-  const session = await getServerSession(authOptions);
-  console.log(session);
+  // const session = await getServerSession(authOptions);
+  // console.log(session);
   // const { data: session, status } = useSession();
   // const router = useRouter();
 
