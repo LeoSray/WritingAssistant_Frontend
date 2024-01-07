@@ -20,8 +20,6 @@ export default function page() {
           setError("All fields are required.");
           return;
         }
-    
-        // Hello
         try {
           const resUserExists = await fetch("api/userExists", {
             method: "POST",
