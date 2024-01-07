@@ -1,37 +1,37 @@
-// 'use client';
+'use client';
 import React from 'react';
-import { authOptions } from "../../api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+// import { authOptions } from "../../api/auth/[...nextauth]/route";
+// import { getServerSession } from "next-auth";
 // import { redirect } from "next/navigation";
-// import { useEffect } from 'react';
-// import { useSession } from 'next-auth/react';
-// import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import UserMenu from '../../../components/UserMenu';
 import HomeSideNav from '../../../components/HomeSideNav';
 import SearchBar from '../../../components/SearchBar';
 import UserCard from '../../../components/UserCard';
 import { BeatLoader } from 'react-spinners';
 
-export default async function Page() {
+export default function Page() {
   // const session = await getServerSession(authOptions);
   // console.log(session);
-  // const { data: session, status } = useSession();
-  // const router = useRouter();
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (status === 'unauthenticated') {
-  //     router.push('/login');
-  //   }
-  // }, [status, router]);
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router]);
 
-  // if (status === 'loading' || status === 'unauthenticated') {
-  //   return (
-  //     <div className='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
-  //       <span className='sr-only'>Loading...</span>
-  //       <BeatLoader color="#000000" />
-  //     </div>
-  //   );  
-  // }
+  if (status === 'loading' || status === 'unauthenticated') {
+    return (
+      <div className='flex space-x-2 justify-center items-center bg-white h-screen dark:invert'>
+        <span className='sr-only'>Loading...</span>
+        <BeatLoader color="#000000" />
+      </div>
+    );  
+  }
 
   // Array simulating data from the database
   const cardsData = [

@@ -1,9 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-// import { signIn } from 'next-auth/react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../lib/firebase';
+import { signIn } from 'next-auth/react';
 
 export default function page() {
     const [email, setEmail] = useState("");
@@ -17,34 +15,22 @@ export default function page() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true); // Set loading to true
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-            // User is logged in, you can use the 'user' object for user details
-            console.log(user);
-            setLoading(false);
-            router.push('/homepage');
-          } catch (error) {
-            // Handle login errors (wrong password, no user with this email, etc.)
-            console.error("Login error:", error);
+
+        // built in nextAuth authentication for front-end.
+        const res = await signIn("credentials", {
+            email: email,
+            password: password,
+            redirect: false,
+            callbackUrl: "/"
+        });
+        if (res?.error) {
             setError("Invalid Credentials");
             return;
-          }
-        // // built in nextAuth authentication for front-end.
-        // const res = await signIn("credentials", {
-        //     email: email,
-        //     password: password,
-        //     redirect: false,
-        //     callbackUrl: "/"
-        // });
-        // if (res?.error) {
-        //     setError("Invalid Credentials");
-        //     return;
-        // }
-        // if (res.ok) {
-        //     setLoading(false);
-        //     router.push('/homepage');
-        // }
+        }
+        if (res.ok) {
+            setLoading(false);
+            router.push('/homepage');
+        }
     };
     return (
         <section className='relative flex w-screen h-screen mx-auto items-center justify-center bg-bgLight'>

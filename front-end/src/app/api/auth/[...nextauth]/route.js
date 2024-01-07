@@ -39,6 +39,23 @@ export const authOptions = {
               sessionId = generateSessionId();
             }
 
+            
+            const resFlask = await fetch("https://journeyai.azurewebsites.net/login", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+                },
+                  body: JSON.stringify({ 'session_id' : sessionId}),
+              });
+
+            if (resFlask.ok) {
+              console.log("it was done");
+            }
+            else {
+              console.log("There was an error authenticating the back-end")
+              return null;
+            }
+
             // Return the user object when authentication is successful
             // Create a new object with user data and sessionId
             const userObject = {
@@ -48,22 +65,6 @@ export const authOptions = {
               sessionId: sessionId
             };
             return userObject;
-
-            // const resFlask = await fetch("https://journeyai.azurewebsites.net/login", {
-            //   method: 'POST',
-            //   headers: {
-            //       'Content-Type': 'application/json'
-            //     },
-            //       body: JSON.stringify({ 'session_id' : sessionId}),
-            //   });
-
-            // if (resFlask.ok) {
-            //   console.log("it was done");
-            // }
-            // else {
-            //   console.log("There was an error authenticating the back-end")
-            //   return null;
-            // }
 
           } catch (error) {
             console.log("Error: ", error);
