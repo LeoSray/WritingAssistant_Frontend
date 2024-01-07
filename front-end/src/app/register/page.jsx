@@ -3,7 +3,8 @@ import { useState } from 'react';
 // import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid';
-
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../../lib/firebase';
 
 export default function page() {
     const [name, setName] = useState("");
@@ -21,6 +22,13 @@ export default function page() {
           return;
         }
         try {
+
+          // Create user with Firebase
+          console.log("I am here")
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const firebaseUser = userCredential.user;
+          console.log(firebaseUser);
+
           const resUserExists = await fetch("api/userExists", {
             method: "POST",
             headers: {
@@ -52,6 +60,14 @@ export default function page() {
               password,
             }),
           });
+
+          // const response = await fetch('/api/register', { // Adjust the endpoint as necessary
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //   },
+          //   body: JSON.stringify({ name, email, password }),
+          // });
     
           if (res.ok) {
             const form = e.target;

@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '../theme-provider';
-// import { getServerSession } from 'next-auth';
-// import { authOptions } from '../../api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../api/auth/[...nextauth]/route';
 import { AuthProvider } from "../../Providers";
 import { UploadDataProvider } from "../../../context/UploadDataContext"
 import { redirect } from "next/navigation";

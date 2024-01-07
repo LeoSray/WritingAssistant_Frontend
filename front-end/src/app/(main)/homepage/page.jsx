@@ -1,7 +1,7 @@
 // 'use client';
 import React from 'react';
-// import { authOptions } from "../../api/auth/[...nextauth]/route";
-// import { getServerSession } from "next-auth";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 // import { redirect } from "next/navigation";
 // import { useEffect } from 'react';
 // import { useSession } from 'next-auth/react';
