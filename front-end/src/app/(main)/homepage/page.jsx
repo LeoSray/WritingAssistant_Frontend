@@ -15,6 +15,7 @@ import { BeatLoader } from 'react-spinners';
 export default async function Page() {
   const session = await getServerSession(authOptions);
 
+  // hello
   if (!session) {
     redirect('/login');
   }
