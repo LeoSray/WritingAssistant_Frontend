@@ -44,7 +44,7 @@ function OptionsMenu({ sessionId }) {
     const getColumnNames = async () => {
       try {
         console.log('in columns ', sessionId);
-        const response = await fetch('http://127.0.0.1:8080/get_column_names', {
+        const response = await fetch('https://journeyai.azurewebsites.net/get_column_names', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

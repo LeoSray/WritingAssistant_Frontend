@@ -22,7 +22,7 @@ function PopupModal({ isModalOpen, closeModal }) {
 
       const getChartData = async (column_name) => {
         try {
-          const response = await fetch('http://127.0.0.1:8080/get_data', {
+          const response = await fetch('https://journeyai.azurewebsites.net/get_data', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
