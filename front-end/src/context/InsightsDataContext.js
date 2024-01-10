@@ -1,23 +1,22 @@
 'use client';
-import React from "react";
-import { useState } from "react";
 
+import React, { useState } from 'react';
 
 export const InsightsDataContext = React.createContext({
-    insightsData: '',
-    updateInsightsData: () => {}
+  insightsData: '',
+  updateInsightsData: () => {},
 });
 
-export const InsightsDataProvider  = ({ children }) => {
-    const [insightsData, setInsightsData] = useState([]);
+export function InsightsDataProvider({ children }) {
+  const [insightsData, setInsightsData] = useState([]);
 
-    const updateInsightsData = (status) => {
-        setInsightsData(status);
-    };
+  const updateInsightsData = (status) => {
+    setInsightsData(status);
+  };
 
-    return (
-      <InsightsDataContext.Provider value={{ insightsData, updateInsightsData }}>
-        {children}
-      </InsightsDataContext.Provider>
-    );
-};
+  return (
+    <InsightsDataContext.Provider value={{ insightsData, updateInsightsData }}>
+      {children}
+    </InsightsDataContext.Provider>
+  );
+}

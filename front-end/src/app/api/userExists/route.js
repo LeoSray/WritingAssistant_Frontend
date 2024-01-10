@@ -1,16 +1,14 @@
-import { connectMongoDB } from "../../../../lib/mongodb";
-import User from "../../../../models/users";
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import { connectMongoDB } from '../../../../lib/mongodb';
+import User from '../../../../models/users';
 
 export async function POST(req) {
   try {
     await connectMongoDB();
     const { email } = await req.json();
-    console.log(email)
-    const user = await User.findOne({ email }).select("_id");
-    console.log("user: ", user);
+    const user = await User.findOne({ email }).select('_id');
     return NextResponse.json({ user });
   } catch (error) {
-    console.log(error);
+    throw new Error("Couldn't connect to MongoDB:", error.message);
   }
 }

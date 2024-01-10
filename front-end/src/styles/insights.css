@@ -7,22 +7,33 @@
     overflow: auto;
 }
 
+
 .insightScrollFull {
-    min-height: 450px;
+    min-height: 400px;
     max-height: 100%;
-    overflow: visible;
+    overflow: auto;
 }
 
 @media  (min-height: 650px) {
     .insightScroll {
-        max-height: 200px;
+        max-height: 150px;
+    }
+
+    .insightScrollFull {
+        min-height: 200px;
+        max-height: 350px;
     }
 }
 
 @media  (min-height: 750px) {
     .insightScroll {
-        max-height: 250px;
+        max-height: 150px;
     }
+
+    .insightScrollFull {
+        max-height: 400px;
+    }
+    
 }
 
 @media  (min-height: 850px) {
@@ -61,6 +72,7 @@
     .insightScroll {
         max-height: 450px;
     }
+    
 }
 
 /* Custom scrollbar styles */

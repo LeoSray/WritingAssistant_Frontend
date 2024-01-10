@@ -1,30 +1,27 @@
-import { Inter } from 'next/font/google'
-import { ThemeProvider } from '../theme-provider'
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../../api/auth/[...nextauth]/route';
-import { AuthProvider } from "../../Providers";
-import {SelectedColumnProvider} from "../../../context/SelectedColumnContext";
-import {HypothesisDataProvider} from "../../../context/HypothesisDataContext"
-import {InsightsDataProvider} from '../../../context/InsightsDataContext';
-import '../../globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import React from 'react';
+import { ThemeProvider } from '../theme-provider';
+import { AuthProvider } from '../../Providers';
+import { SelectedColumnProvider } from '../../../context/SelectedColumnContext';
+import { HypothesisDataProvider } from '../../../context/HypothesisDataContext';
+import { InsightsDataProvider } from '../../../context/InsightsDataContext';
+import '../../globals.css';
 
 export const metadata = {
   title: 'Data Driven Stories',
   description: '',
-}
+};
+
 export default async function RootLayout({ children }) {
   return (
-    <html suppressHydrationWarning>
+    <html suppressHydrationWarning lang="en">
       <body>
-        <ThemeProvider  attribute="class" defaultTheme="light" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <AuthProvider>
             <SelectedColumnProvider>
               <InsightsDataProvider>
-              <HypothesisDataProvider>
-                {children}
-              </HypothesisDataProvider>
+                <HypothesisDataProvider>
+                  {children}
+                </HypothesisDataProvider>
               </InsightsDataProvider>
             </SelectedColumnProvider>
           </AuthProvider>

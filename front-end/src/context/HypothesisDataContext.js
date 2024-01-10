@@ -1,23 +1,22 @@
 'use client';
-import React from "react";
-import { useState } from "react";
 
+import React, { useState } from 'react';
 
 export const HypothesisDataContext = React.createContext({
   hasHypothesisData: '',
-  setHasHypothesisData: () => {}
+  setHasHypothesisData: () => {},
 });
 
-export const HypothesisDataProvider  = ({ children }) => {
-    const [hasHypothesisData, setHasHypothesisData] = useState(false);
+export function HypothesisDataProvider({ children }) {
+  const [hasHypothesisData, setHasHypothesisData] = useState(false);
 
-    const updateHypothesisData = (status) => {
-        setHasHypothesisData(status);
-    };
+  const updateHypothesisData = (status) => {
+    setHasHypothesisData(status);
+  };
 
-    return (
-      <HypothesisDataContext.Provider value={{ hasHypothesisData, updateHypothesisData }}>
-        {children}
-      </HypothesisDataContext.Provider>
-    );
-};
+  return (
+    <HypothesisDataContext.Provider value={{ hasHypothesisData, updateHypothesisData }}>
+      {children}
+    </HypothesisDataContext.Provider>
+  );
+}

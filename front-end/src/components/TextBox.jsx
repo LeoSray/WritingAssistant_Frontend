@@ -1,20 +1,27 @@
+/* eslint-disable func-names */
+
 'use client';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+
+import React, {
+  useState, useEffect, useRef, useCallback,
+} from 'react';
 // import dynamic from 'next/dynamic';
-import { Bold, Italic, UnderlineIcon, Strike } from './Icons';
-import { Tooltip } from 'react-tooltip'
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
+import { Tooltip } from 'react-tooltip';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import Placeholder from '@tiptap/extension-placeholder';
-import '../app/globals.css'
+import {
+  Bold, Italic, UnderlineIcon, Strike,
+} from './Icons';
+import '../app/globals.css';
 
-const TextBox = () => {
+function TextBox() {
   // Configure the Placeholder extension separately
   const placeholderExtension = Placeholder.configure({
     placeholder: 'Start typing your text here.',
     emptyEditorClass: 'is-editor-empty',
-    emptyNodeClass: 'is-empty'
+    emptyNodeClass: 'is-empty',
   });
   const editor = useEditor({
     autoFocus: true,
@@ -28,11 +35,11 @@ const TextBox = () => {
         class: 'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none',
       },
     },
-  })
+  });
 
   useEffect(() => {
     if (editor) {
-      console.log("Editor loaded");
+      console.log('Editor loaded');
       editor.commands.focus('start');
     }
   }, [editor]); // Dependency array ensures this effect runs only when the editor is initialized
@@ -55,9 +62,9 @@ const TextBox = () => {
     if (editor) {
       const text = editor.getHTML();
       const plainText = text.replace(/<[^>]*>?/gm, '');
-      const sentences = plainText.split('.').map(s => s.trim()).filter(s => s.length > 0);
-      const lastTwoSentences = sentences.slice(-2).join('. ') + '.';
-      console.log("Last two sentences:", lastTwoSentences);
+      const sentences = plainText.split('.').map((s) => s.trim()).filter((s) => s.length > 0);
+      const lastTwoSentences = `${sentences.slice(-2).join('. ')}.`;
+      console.log('Last two sentences:', lastTwoSentences);
     }
   };
 
@@ -72,7 +79,7 @@ const TextBox = () => {
         debouncedExtraction();
       };
       editor.on('update', handleUpdate);
-  
+
       // Return a cleanup function
       return () => {
         // Unsubscribe from the update event
@@ -86,25 +93,25 @@ const TextBox = () => {
       <Tooltip id="my-tooltip" />
 
       {/* Editor content */}
-      <EditorContent editor={editor} className="flex-grow overflow-auto"/>
+      <EditorContent editor={editor} className="flex-grow overflow-auto" />
 
       {/* Toolbar */}
       <div className="toolbar flex relative justify-center mb-3 space-x-8">
-        <button data-tooltip-id="my-tooltip" data-tooltip-content="Bold" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleBold().run()}>
-          <Bold/>
+        <button type="button" aria-label="bold button" data-tooltip-id="my-tooltip" data-tooltip-content="Bold" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleBold().run()}>
+          <Bold />
         </button>
-        <button data-tooltip-id="my-tooltip" data-tooltip-content="Italic" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleItalic().run()}>
-          <Italic/>
+        <button type="button" aria-label="italic button" data-tooltip-id="my-tooltip" data-tooltip-content="Italic" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleItalic().run()}>
+          <Italic />
         </button>
-        <button data-tooltip-id="my-tooltip" data-tooltip-content="Underline" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleUnderline().run()}>
-          <UnderlineIcon/>
+        <button type="button" aria-label="underline button" data-tooltip-id="my-tooltip" data-tooltip-content="Underline" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleUnderline().run()}>
+          <UnderlineIcon />
         </button>
-        <button data-tooltip-id="my-tooltip" data-tooltip-content="Strike" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleStrike().run()}>
-          <Strike/>
+        <button type="button" aria-label="strike button" data-tooltip-id="my-tooltip" data-tooltip-content="Strike" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleStrike().run()}>
+          <Strike />
         </button>
       </div>
-    </div>  
-  )
+    </div>
+  );
 }
 
 export default TextBox;
