@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
 import { signOut } from 'next-auth/react';
-import logo from '../../public/logo.png';
 import { HomeIcon, SettingIcon, ProfileIcon } from './Icons';
 
 export default function HomeSideNav() {
@@ -56,7 +55,7 @@ export default function HomeSideNav() {
           <div className="flex flex-row justify-center items-center mb-9 mt-7">
             <a href="/homepage" className="flex">
               <Image
-                src={logo}
+                src={"/logo.png"}
                 width={180}
                 height={71}
                 alt="Journey AI logo"
