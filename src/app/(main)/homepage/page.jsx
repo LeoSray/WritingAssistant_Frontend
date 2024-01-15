@@ -20,7 +20,7 @@ export default async function Page() {
   return (
     <section className="h-screen grid grid-rows-[auto_1fr] grid-cols-5 bg-bgGrey text-black">
       <div className="col-span-1 row-span-3">
-        <HomeSideNav />
+        <HomeSideNav session={session} />
       </div>
 
       <div className="col-span-5 md:col-span-4 lg:col-span-4 p-12 overflow-auto">

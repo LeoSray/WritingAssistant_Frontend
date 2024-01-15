@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { HomeIcon } from '@heroicons/react/24/solid';
 import SideNav from './SideNav';
 import DocumentTitle from './DocumentTitle';
@@ -10,7 +10,36 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 import '../app/globals.css';
 
-function NavBar({ sessionId }) {
+function NavBar({ userId, sessionId }) {
+  const [title, setTitle] = useState('');
+  const [columns, setColumns] = useState({});
+
+  useEffect(() => {
+    // Function to update state based on localStorage data
+    const updateFromLocalStorage = () => {
+      const storedDataString = localStorage.getItem('dataSetInfo');
+      if (storedDataString) {
+        const storedData = JSON.parse(storedDataString);
+        setTitle(storedData.title);
+        setColumns(storedData.column_names);
+      }
+    };
+    // Call once to initialize state
+    updateFromLocalStorage();
+
+    // Event listener for storage changes
+    const handleStorageChange = (event) => {
+      if (event.key === 'dataSetInfo') {
+        updateFromLocalStorage();
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   return (
     <div className="bg-neutral-900 w-screen p-3">
       <div className="flex flex-row justify-between items-center w-full">
@@ -24,12 +53,12 @@ function NavBar({ sessionId }) {
         </div>
 
         <div>
-          <DocumentTitle />
+          <DocumentTitle title={title} />
         </div>
 
         {/* DropDown Menu */}
         <div className="flex justify-center lg:justify-end lg:pl-4 mr-3 w-full">
-          <OptionsMenu sessionId={sessionId} />
+          <OptionsMenu columns={columns} sessionId={sessionId} />
         </div>
 
         <div className="md:hidden">

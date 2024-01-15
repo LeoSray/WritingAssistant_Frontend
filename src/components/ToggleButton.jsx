@@ -29,8 +29,11 @@ function ToggleButton() {
   }, [isOpen]);
   return (
     <div className="md:hidden text-center">
-      <button onClick={toggleDropdown} className="text-black font-medium rounded-lg text-sm" type="button">
-        Show navigation
+      <button onClick={toggleDropdown} className="text-white font-medium rounded-lg text-sm" type="button" aria-label="toggle dropdown button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+
       </button>
 
       <div id="drawer-navigation" className={`${isOpen ? 'translate-x-0' : 'translate-x-full'} fixed top-0 right-0 z-40 w-full h-screen p-4 overflow-y-auto transition-transform duration-300 ease-in-out bg-white dark:bg-gray-800`} tabIndex="-1" aria-labelledby="drawer-navigation-label">

@@ -37,7 +37,7 @@ function InsightButton({ header }) {
   );
 }
 
-function InsightsBox({ sessionId }) {
+function InsightsBox({ userId, sessionId }) {
   const { selectedColumn } = useContext(SelectedColumnContext);
   const { hasHypothesisData } = useContext(HypothesisDataContext);
   const { insightsData, updateInsightsData } = useContext(InsightsDataContext);
@@ -57,7 +57,7 @@ function InsightsBox({ sessionId }) {
     setIsLoading(true); // Set loading to true before API call
     const getInsightsData = async (prev_insights, insight_count) => {
       try {
-        const response = await fetch('https://journeyai.azurewebsites.net/get_insights', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/get_insights`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -71,9 +71,7 @@ function InsightsBox({ sessionId }) {
         });
         const data = await response.json();
         if (response.ok) {
-          // console.log('Insights done');
           setIsLoading(false); // Stop loading after API call is complete
-          // const insightsData = data.insights;
           const previousData = data.prev_insights;
           updateInsightsData(data.insights);
           setPreviousInsights(previousData);
@@ -103,8 +101,6 @@ function InsightsBox({ sessionId }) {
   };
 
   const getKey = (index) => `${selectedColumn}-${activeTab}-${index}`;
-
-  console.log(hasHypothesisData);
   return (
     <div className="flex flex-col px-6 w-full">
       <div className="flex justify-between items-center bg-neutral-900 border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-[#030712]">

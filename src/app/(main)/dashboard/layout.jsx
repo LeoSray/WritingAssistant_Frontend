@@ -4,6 +4,7 @@ import { AuthProvider } from '../../Providers';
 import { SelectedColumnProvider } from '../../../context/SelectedColumnContext';
 import { HypothesisDataProvider } from '../../../context/HypothesisDataContext';
 import { InsightsDataProvider } from '../../../context/InsightsDataContext';
+import { EditorDataProvider } from '../../../context/EditorDataContext';
 import '../../globals.css';
 
 export const metadata = {
@@ -20,7 +21,9 @@ export default async function RootLayout({ children }) {
             <SelectedColumnProvider>
               <InsightsDataProvider>
                 <HypothesisDataProvider>
-                  {children}
+                  <EditorDataProvider>
+                    {children}
+                  </EditorDataProvider>
                 </HypothesisDataProvider>
               </InsightsDataProvider>
             </SelectedColumnProvider>

@@ -10,7 +10,7 @@ function OptionsMenu({ sessionId }) {
   const [isOpen, setIsOpen] = useState(false);
   const { selectedColumn, setSelectedColumn } = useContext(SelectedColumnContext);
   const [dataColumns, setDataColumns] = useState([]);
-  const dropdownRef = useRef(null); // Ref for the dropdown
+  const dropdownRef = useRef(null);
 
   // Function to toggle the dropdown state
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -43,8 +43,7 @@ function OptionsMenu({ sessionId }) {
     // use the setValue function to set the selected column
     const getColumnNames = async () => {
       try {
-        console.log('in columns ', sessionId);
-        const response = await fetch('https://journeyai.azurewebsites.net/get_column_names', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/get_column_names`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

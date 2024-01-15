@@ -38,7 +38,7 @@ export const authOptions = {
             sessionId = generateSessionId();
           }
 
-          const resFlask = await fetch('https://journeyai.azurewebsites.net/login', {
+          const resFlask = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

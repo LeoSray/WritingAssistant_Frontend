@@ -17,20 +17,20 @@ export default async function page() {
     <div className="grid grid-rows-[auto_1fr] grid-cols-5 w-screen h-screen bg-bgGrey delayAnimation transition-colors duration-500 ease-in-out dark:bg-neutral-900">
       <div className="col-span-5 md:col-span-5 pb-2">
         <div className="flex flex-row justify-between items-center w-full">
-          <NavBar sessionId={session.sessionId} />
+          <NavBar userId={session.userId} sessionId={session.sessionId} />
         </div>
       </div>
 
       <div className="flex flex-col col-span-5 md:col-span-3 pt-4 h-full overflow-y-auto">
-        <TextBox sessionId={session.sessionId} />
+        <TextBox userId={session.userId} sessionId={session.sessionId} />
       </div>
 
       <div className="hidden md:flex md:flex-col md:col-span-2 pt-4">
         <div className="w-full overflow-y-auto">
-          <HypothesisBox sessionId={session.sessionId} />
+          <HypothesisBox userId={session.userId} sessionId={session.sessionId} />
         </div>
         <div className="w-full py-8 overflow-y-auto">
-          <InsightsBox sessionId={session.sessionId} />
+          <InsightsBox userId={session.userId} sessionId={session.sessionId} />
         </div>
       </div>
     </div>

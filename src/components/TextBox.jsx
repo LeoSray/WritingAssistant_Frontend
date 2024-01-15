@@ -3,7 +3,7 @@
 'use client';
 
 import React, {
-  useState, useEffect, useRef, useCallback,
+  useState, useEffect, useRef, useCallback, useContext,
 } from 'react';
 // import dynamic from 'next/dynamic';
 import { Tooltip } from 'react-tooltip';
@@ -14,9 +14,12 @@ import Placeholder from '@tiptap/extension-placeholder';
 import {
   Bold, Italic, UnderlineIcon, Strike,
 } from './Icons';
+import { EditorDataContext } from '../context/EditorDataContext';
+import SaveButton from './SaveButton';
 import '../app/globals.css';
 
-function TextBox() {
+function TextBox({ userId, sessionId }) {
+  const { editorText, setEditorText } = useContext(EditorDataContext);
   // Configure the Placeholder extension separately
   const placeholderExtension = Placeholder.configure({
     placeholder: 'Start typing your text here.',
@@ -63,8 +66,8 @@ function TextBox() {
       const text = editor.getHTML();
       const plainText = text.replace(/<[^>]*>?/gm, '');
       const sentences = plainText.split('.').map((s) => s.trim()).filter((s) => s.length > 0);
-      const lastTwoSentences = `${sentences.slice(-2).join('. ')}.`;
-      console.log('Last two sentences:', lastTwoSentences);
+      const extractText = `${sentences.slice(-2).join('. ')}.`;
+      setEditorText(extractText);
     }
   };
 
@@ -109,6 +112,7 @@ function TextBox() {
         <button type="button" aria-label="strike button" data-tooltip-id="my-tooltip" data-tooltip-content="Strike" data-tooltip-place="top" onClick={() => editor.chain().focus().toggleStrike().run()}>
           <Strike />
         </button>
+        <SaveButton />
       </div>
     </div>
   );
